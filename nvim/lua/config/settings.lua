@@ -5,6 +5,8 @@ vim.opt.numberwidth = 4
 vim.opt.autowriteall = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.linebreak = true
+vim.opt.relativenumber = true
+vim.opt.conceallevel = 1
 
 vim.opt.incsearch = true
 vim.cmd("nohlsearch")
