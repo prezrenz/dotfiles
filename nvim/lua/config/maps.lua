@@ -34,4 +34,4 @@ vim.keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
 vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>")
 
 -- Obsidian.nvim remaps
-vim.keymap.set('n', '<leader>pi', '<CMD>ObsidianPasteImg')
+vim.keymap.set('n', '<leader>pi', '<CMD>ObsidianPasteImg<CR>')
