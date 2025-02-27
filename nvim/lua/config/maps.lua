@@ -12,6 +12,9 @@ vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>")
 vim.keymap.set("n", "<C-Right>", "<cmd>BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<C-Left>", "<cmd>BufferLineCyclePrev<CR>")
 
+vim.keymap.set("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>")
+
 -- Needs a justfile and just build system https://github.com/casey/just
 -- Will run the default all: recipe
 vim.keymap.set('n', "<leader>pr", "<cmd>!just<CR>")
