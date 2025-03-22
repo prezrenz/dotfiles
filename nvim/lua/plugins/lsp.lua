@@ -22,7 +22,7 @@ return {
                   'clangd', 
                   'lua_ls', 
                   'pylsp', 
-                  'lemminx'
+                  'lemminx',
               },
               handlers = {
                 -- this first function is the "default handler"

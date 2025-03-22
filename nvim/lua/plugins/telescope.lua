@@ -13,5 +13,7 @@ return {
 
         vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions)
         vim.keymap.set('n', '<leader>fr', builtin.lsp_references)
+
+        vim.keymap.set('n', '<leader>ff', builtin.lsp_dynamic_workspace_symbols)
     end
 }
