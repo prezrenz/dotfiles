@@ -22,5 +22,5 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.diagnostic.config({
-  virtual_text = false, -- Turn off inline diagnostics
+	virtual_text = false, -- Turn off inline diagnostics
 })

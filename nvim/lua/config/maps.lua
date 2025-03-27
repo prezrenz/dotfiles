@@ -17,10 +17,12 @@ vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>")
 
 -- Needs a justfile and just build system https://github.com/casey/just
 -- Will run the default all: recipe
-vim.keymap.set('n', "<leader>pr", "<cmd>!just<CR>")
+vim.keymap.set("n", "<leader>pr", "<cmd>!just<CR>")
 
 -- remap to not replace clipboard when pasting
-vim.keymap.set("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { remap = false, expr = true })
+vim.keymap.set("x", "p", function()
+	return 'pgv"' .. vim.v.register .. "y"
+end, { remap = false, expr = true })
 -- remap to select all
 vim.keymap.set("n", "<C-a>", "gg<S-v>GG<CR>")
 
@@ -34,4 +36,6 @@ vim.keymap.set("n", "<leader>gg", "<cmd>Git<CR>")
 vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>")
 
 -- Obsidian.nvim remaps
-vim.keymap.set('n', '<leader>pi', '<CMD>ObsidianPasteImg<CR>')
+vim.keymap.set("n", "<leader>pi", "<CMD>ObsidianPasteImg<CR>")
+
+vim.keymap.set("n", "<leader>bf", "<CMD>Format<CR>")
