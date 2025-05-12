@@ -28,8 +28,6 @@ return {
 					"pylsp",
 					"lemminx",
 					"html",
-					"css",
-					"json",
 					"eslint",
 				},
 				handlers = {
