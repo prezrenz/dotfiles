@@ -10,4 +10,5 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 	},
+	{ "qaptoR-nvim/chocolatier.nvim", priority = 1000, config = true, opts = ... },
 }
