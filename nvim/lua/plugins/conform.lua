@@ -11,10 +11,16 @@ return {
 				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform will run the first available formatter
 				java = { "google-java-format" },
-                csharp = { "csharpier" },
-                c = { "clang-format" },
-                cpp = { "clang-format" },
-                dart_format = { "dart_format" },
+				csharp = { "csharpier" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
+				dart_format = { "dart_format" },
+			},
+			formatters = {
+				csharpier = {
+					command = "dotnet-csharpier",
+					args = { "--write-stdout" },
+				},
 			},
 		})
 		vim.api.nvim_create_user_command("Format", function(args)

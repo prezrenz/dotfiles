@@ -9,8 +9,8 @@ vim.keymap.set("n", "<leader>pf", "<cmd>Oil<cr>") -- The above uses netrw, this 
 
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>")
 
-vim.keymap.set("n", "<C-Right>", "<cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<C-Left>", "<cmd>BufferLineCyclePrev<CR>")
+-- vim.keymap.set("n", "<C-Right>", "<cmd>BufferLineCycleNext<CR>")
+-- vim.keymap.set("n", "<C-Left>", "<cmd>BufferLineCyclePrev<CR>")
 
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>")
@@ -39,3 +39,7 @@ vim.keymap.set("n", "<leader>gp", "<cmd>Git push<CR>")
 vim.keymap.set("n", "<leader>pi", "<CMD>ObsidianPasteImg<CR>")
 
 vim.keymap.set("n", "<leader>bf", "<CMD>Format<CR>")
+
+vim.keymap.set("n", "<leader>pt", "<CMD>TodoTelescope<CR>")
+
+vim.keymap.set("n", "<leader>cp", "<CMD>Colortils picker<CR>")

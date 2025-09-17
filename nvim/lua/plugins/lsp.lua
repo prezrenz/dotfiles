@@ -1,10 +1,13 @@
 return {
+	{ "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
 	{
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
 				ensure_installed = {
 					"clang-format",
+					"csharpier",
+					"netcoredbg",
 					"codelldb",
 					"java-test",
 					"java-debug-adapter",
@@ -12,6 +15,7 @@ return {
 					"rustfmt",
 					"isort",
 					"black",
+					"tinymist",
 				},
 			})
 		end,
@@ -21,12 +25,16 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+                    "omnisharp",
 					"jdtls",
-					"omnisharp",
 					"clangd",
 					"lua_ls",
 					"pylsp",
 					"lemminx",
+					"html",
+					"cssls",
+					"jsonls",
+					"ts_ls",
 				},
 				handlers = {
 					-- this first function is the "default handler"
@@ -38,7 +46,7 @@ return {
 					-- this is the "custom handler" for `jdtls`
 					-- noop is an empty function that doesn't do anything
 					jdtls = function() end,
-                    rust_analyzer = function() end,
+					rust_analyzer = function() end,
 				},
 			})
 		end,
@@ -83,6 +91,45 @@ return {
 				end,
 			})
 		end,
+		opts = {
+			servers = {
+				omnisharp = {
+					handlers = {
+						["textDocument/definition"] = function(...)
+							return require("omnisharp_extended").handler(...)
+						end,
+					},
+					keys = {
+						{
+							"gd",
+							require("telescope") and function()
+								require("omnisharp_extended").telescope_lsp_definitions()
+							end or function()
+								require("omnisharp_extended").lsp_definitions()
+							end,
+							desc = "Goto Definition",
+						},
+					},
+					enable_roslyn_analyzers = true,
+					organize_imports_on_format = true,
+					enable_import_completion = true,
+				},
+			},
+		},
+	},
+	{
+		"nvim-neotest/neotest",
+		optional = true,
+		dependencies = {
+			"Issafalcon/neotest-dotnet",
+		},
+		opts = {
+			adapters = {
+				["neotest-dotnet"] = {
+					-- Here we can set options for neotest-dotnet
+				},
+			},
+		},
 	},
 	{
 		"hrsh7th/cmp-nvim-lsp",
@@ -106,12 +153,48 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		---@param opts cmp.ConfigSchema
-		opts = function(_, opts)
-			opts.sources = opts.sources or {}
-			table.insert(opts.sources, {
-				name = "lazydev",
-				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+		--- @param opts cmp.ConfigSchema
+		dependencies = { "saadparwaiz1/cmp_luasnip" },
+		config = function()
+			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+			require("cmp").setup({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = {
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<Down>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						elseif has_words_before() then
+							cmp.complete()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+
+					["<Up>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+				},
+				sources = {
+					{ name = "luasnip" },
+					{
+						name = "lazydev",
+						group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+					},
+				},
 			})
 		end,
 	},
