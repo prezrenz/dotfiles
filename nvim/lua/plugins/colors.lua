@@ -11,4 +11,6 @@ return {
 		priority = 1000,
 	},
 	{ "qaptoR-nvim/chocolatier.nvim", priority = 1000, config = true, opts = ... },
+	{ "Tsuzat/NeoSolarized.nvim", lazy = false, priority = 1000 },
 }
+
